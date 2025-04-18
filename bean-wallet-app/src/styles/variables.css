@@ -1,0 +1,61 @@
+
+
+/* Dark Mode */
+.dark-theme {
+  --bean-primary: #4caf50;
+  --bean-secondary: #1c1d1c;
+  --bean-accent: #07ff07;
+  --bean-accent2: #74a17f;
+  --bean-bg: #1a1d1a;
+  --bean-text: #b9f5b7;
+  --bean-light-text: #2a2b2a;
+  --bean-error: #c62828;
+  --bean-card: #3b3b3b;
+  --bean-border: #000000;
+}
+
+/* Light Mode */
+.light-theme {
+  --bean-primary: #388e3c;
+  --bean-secondary: #1b5e20;
+  --bean-accent: #2edf4b;
+  --bean-accent2: #d8e2d8;
+  --bean-bg: #b3e6a2;
+  --bean-text: #152e17;
+  --bean-light-text: #4e654e;
+  --bean-error: #d32f2f;
+  --bean-card: #c1e7ca;
+  --bean-border: #9fe2aa;
+}
+
+/* GhostNet - Dark */
+.ghostnet-theme-dark {
+  --bean-bg: #0d001a;
+  --bean-card: #2a1240;
+  --bean-primary: #b94cff;
+  --bean-accent: #d59eff;
+  --bean-accent2: #33195d;
+  --bean-text: #f5f0ff;
+  --bean-light-text: #bd9cff;
+  --bean-error: #ff3c82;
+  --bean-card: #1f0c33;
+  --bean-border: #b78aff;
+}
+
+/* GhostNet - Light */
+.ghostnet-theme-light {
+  --bean-bg: #f3e6ff;
+  --bean-card: #e6d4fa;
+  --bean-primary: #b94cff;
+  --bean-accent: #6a29b9;
+  --bean-accent2: #d1bfff;
+  --bean-text: #1b0033;
+  --bean-light-text: #602aa7;
+  --bean-error: #cc0077;
+  --bean-border: #a46ce3;
+}
+
+      
+
+  
+  

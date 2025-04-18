@@ -1,0 +1,76 @@
+@import '../styles/variables.css';
+
+
+.beanmoji-gallery {
+  min-height: 100%;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--bean-bg);
+}
+
+.beanmoji-gallery p {
+  color: var(--bean-text);
+}
+
+.beanmoji-gallery h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--bean-text);
+}
+
+.beanmoji-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.beanmoji-card {
+  background: var(--bean-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1rem;
+  width: 160px;
+  transition: transform 0.2s ease;
+}
+
+.beanmoji-card:hover {
+  transform: scale(1.03);
+}
+
+.beanmoji-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.beanmoji-card p {
+  color: var(--bean-second-text) !important;
+  margin: 0.5rem 0;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--bean-text);
+}
+
+.beanmoji-card button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--bean-primary);
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.beanmoji-card button:hover {
+  background-color: var(--bean-secondary);
+}
+
+.beanmoji-card button.owned {
+  background-color: #bde9cf;
+  cursor: default;
+}
+
+  

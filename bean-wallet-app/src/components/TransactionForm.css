@@ -1,0 +1,212 @@
+@import '../styles/variables.css';
+
+/* =============================
+   Layout & Container
+============================= */
+.tx-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  background: var(--bean-bg);
+  box-sizing: border-box;
+}
+
+.tx-form-card {
+  background-color: var(--bean-card);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  animation: fadeUp 0.4s ease;
+}
+
+.tx-form-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: var(--bean-text);
+}
+
+/* =============================
+   Form Styling
+============================= */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+label {
+  align-self: flex-start;
+  font-weight: bold;
+  color: var(--bean-text);
+  margin-bottom: 0.2rem;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  max-width: 400px;
+}
+
+input,
+select {
+  padding: 0.75rem;
+  background-color: var(--bean-accent2);
+  border: 1px solid var(--bean-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:hover,
+select:hover {
+  background-color: #f1f1f1;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--bean-primary);
+  outline: none;
+  box-shadow: 0 0 4px rgba(192, 219, 199, 0.3);
+}
+
+.tx-form-card input,
+.tx-form-card select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Button
+============================= */
+button {
+  padding: 0.8rem;
+  background-color: var(--bean-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--bean-secondary);
+  transform: translateY(-2px);
+}
+
+/* =============================
+   Status Message
+============================= */
+.status-msg {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.status-msg.success {
+  color: var(--bean-primary);
+}
+
+.status-msg.error {
+  color: #c62828;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 1.25rem;
+}
+
+/* =============================
+   Dropdown (Recent Recipients)
+============================= */
+.dropdown-container {
+  margin-bottom: 1rem;
+}
+
+.dropdown-container select {
+  margin-bottom: 0.5rem;
+}
+
+.dropdown-container label {
+  align-self: flex-start;
+  font-weight: bold;
+  color: var(--bean-text);
+  margin-bottom: 0.2rem;
+}
+
+/* =============================
+   Input Tweaks
+============================= */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* =============================
+   Animation
+============================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.helper-text a {
+  color: var(--bean-accent);
+  text-decoration: none; /* optional: removes underline */
+}
+
+.helper-text a:hover {
+  color: var(--bean-primary); /* optional: change color on hover */
+  text-decoration: underline;
+}
+
+
+
+
+  
+  
+
+  
+  

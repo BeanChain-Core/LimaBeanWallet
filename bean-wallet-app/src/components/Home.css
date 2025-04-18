@@ -1,0 +1,77 @@
+@import '../styles/variables.css';
+
+
+.home-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(160deg, var(--bean-bg), var(--bean-secondary)); /* dynamic background */
+  z-index: 1;
+}
+
+.spinning-logo {
+  width: clamp(120px, 20vw, 300px);
+  height: auto;
+  margin-bottom: 2rem;
+  /* animation: spin 10s linear infinite; */
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--bean-text);
+}
+
+p {
+  font-size: 1.1rem;
+  color: var(--bean-text);
+}
+
+.bean-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.falling-bean {
+  position: absolute;
+  top: -60px;
+  width: 30px;
+  height: auto;
+  opacity: 0.8;
+  animation: fall 8s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+  

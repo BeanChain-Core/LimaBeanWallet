@@ -1,0 +1,70 @@
+@import '../styles/variables.css';
+
+
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--bean-accent, #ffe6e6);
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.bean-wrapper {
+  position: absolute;
+  left: -200px;
+  top: 40%;
+  transform: translateY(-50%);
+  transition: transform 1s ease-out;
+}
+
+.bean-wrapper.slide-in {
+  transform: translateX(100vw) translateY(-50%);
+}
+
+.error-bean {
+  width: 150px;
+  height: auto;
+}
+
+.error-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+}
+
+.error-text.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.error-text h2 {
+  font-size: 2rem;
+  color: var(--bean-danger, #c62828);
+  margin-bottom: 1rem;
+}
+
+.error-text p {
+  color: var(--bean-text, #444);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.error-text button {
+  background-color: var(--bean-danger, #d32f2f);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.error-text button:hover {
+  background-color: #b71c1c;
+}
