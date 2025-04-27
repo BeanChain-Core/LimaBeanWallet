@@ -1,0 +1,77 @@
+.tx-details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--bean-text);
+  }
+  
+  .tx-detail-card {
+    background-color: var(--bean-card);
+    border: 1px solid var(--bean-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column; /* ✅ this forces inside content to respect width */
+    word-break: break-word; /* ✅ */
+  }
+
+  .tx-detail-card * {
+    word-break: break-word; /* ✅ Apply to all children inside */
+    overflow-wrap: anywhere; /* ✅ Force break anywhere if needed */
+  }
+  
+  .tx-detail-card p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    word-break: break-word; /* ✅ Key for very long hashes */
+  }
+  
+  .tx-meta {
+    margin-top: 1.5rem;
+    background-color: var(--bean-bg);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    overflow-x: auto; /* ✅ Scrollable horizontally if needed */
+    max-width: 100%;  /* ✅ Constrain inside container */
+  }
+  
+  .tx-meta pre {
+    white-space: pre-wrap; /* ✅ Break lines if needed */
+    word-wrap: break-word;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  
+  .error-message, .loading-message {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: var(--bean-error);
+  }
+  
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .tx-details-container {
+      padding: 0.5rem;
+    }
+  
+    .tx-detail-card {
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  
+    .tx-meta {
+      font-size: 0.8rem;
+    }
+  
+    .tx-detail-card p {
+      font-size: 0.85rem;
+    }
+  }
+  
+  
+  

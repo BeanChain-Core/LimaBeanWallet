@@ -39,7 +39,7 @@ const Home = ({ isLoggedIn }) => {
             powered by {IS_GHOSTNET ? 'GhostBeanChain' : 'BeanChain'}
           </h4>
           <p>{IS_GHOSTNET ? 'You are in testnet mode. Your BEAN is spooky, but not real.' : 'Login up top!'}</p>
-          <p>{IS_GHOSTNET ? 'Scan a QR or generate a wallet below to explore GhostNet.' : 'or click below to get started!'}</p>
+          <p>{IS_GHOSTNET ? 'Generate a wallet below to explore GhostNet.' : 'or click below to get started!'}</p>
           <button onClick={() => navigate('/generate-key')}>
             {IS_GHOSTNET ? 'Create Ghost Wallet' : 'Generate New Wallet'}
           </button>

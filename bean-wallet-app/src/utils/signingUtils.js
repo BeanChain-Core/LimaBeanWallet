@@ -26,7 +26,9 @@ export async function signTransaction(txData, privateKeyHex, nonce) {
     gasFee: Number(txData.gasFee),
     nonce,
     publicKeyHex: txData.publicKeyHex,
-    timeStamp
+    timeStamp,
+    type: txData.type,   
+    meta: txData.meta || null
   };
 
   const txHash = generateTransactionHash(

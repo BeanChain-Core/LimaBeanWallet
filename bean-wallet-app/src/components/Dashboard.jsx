@@ -80,8 +80,10 @@ const Dashboard = ({ privateKey, walletInfo }) => {
         <div className="dashboard-actions">
           <button onClick={() => navigate('/dashboard/send')}>New Transaction</button>
           <button onClick={() => navigate('/dashboard/txexplore')}>My Transactions</button>
-          <button onClick={() => navigate('/beanmojis')}>BeanMojis</button>
-          <button onClick={() => navigate('/myBeans')}>My BeanMoji Collection</button>
+          <button onClick={() => navigate('/dashboard/beanmojis')}>BeanMojis</button>
+          <button onClick={() => navigate('/dashboard/myBeans')}>My BeanMoji Collection</button>
+          <button onClick={() => navigate('/dashboard/mint')}>Mint</button>
+          <button onClick={() => navigate('/dashboard/tokens')}>My Tokens</button>
         </div>
       </div>
 

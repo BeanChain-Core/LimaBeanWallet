@@ -95,3 +95,28 @@
   margin-bottom: 0.75rem;
   text-align: center;
 }
+
+.collapsible-section {
+  border: 1px solid var(--bean-border);
+  background-color: var(--bean-card);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.collapsible-header {
+  background-color: var(--bean-accent2);
+  color: var(--bean-text);
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapsible-content {
+  padding: 1rem;
+  background-color: var(--bean-card);
+}
+

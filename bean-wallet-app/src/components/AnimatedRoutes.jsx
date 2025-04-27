@@ -16,6 +16,11 @@ import MobileTransactionForm from './MobileTransactionForm';
 import PageLayout from './PageLayout';
 import UsernameLabelSetter from './UsernameLabelSetter';
 import About from './About';
+import TokenMintForm from './TokenMintForm';
+import MyTokens from './MyTokens';
+import TXDetails from './TXDetails';
+import TokenPage from './TokenPage';
+import SendTokenForm from './SendTokenForm';
 
 
 const AnimatedRoutes = ({ privateKey, walletInfo, handleLogin,  setNotifications, rehydrated}) => {
@@ -31,6 +36,14 @@ const AnimatedRoutes = ({ privateKey, walletInfo, handleLogin,  setNotifications
       <Route path="/beanmojis" element={<PageLayout><BeanmojiGallery walletAddress={walletInfo?.address} /></PageLayout>} />
       <Route path="/myBeans" element={<PageLayout><MyBeanmojis walletAddress={walletInfo?.address} /></PageLayout>} />
       <Route path="/about/:topic" element={<PageLayout><About walletAddress={walletInfo?.address} /></PageLayout>} />
+      <Route path="/mint" element={<PageLayout><TokenMintForm privateKey={privateKey} walletInfo={walletInfo} /></PageLayout>} />
+      <Route path="/tokens" element={<PageLayout><MyTokens walletInfo={walletInfo} /></PageLayout>} />
+      <Route path="/tx/:txHash" element={<PageLayout><TXDetails /> </PageLayout>} />
+      
+      <Route path="/token/:tokenHash" element={<TokenPage />} />
+      <Route path="/send-token/:tokenHash" element={<SendTokenForm walletInfo={walletInfo} privateKey={privateKey} />} />
+
+
       <Route
         path="/username"
         element={
@@ -57,6 +70,11 @@ const AnimatedRoutes = ({ privateKey, walletInfo, handleLogin,  setNotifications
           <Route index element={<ResponsiveTxForm privateKey={privateKey} walletInfo={walletInfo} />} />
           <Route path="send" element={<ResponsiveTxForm privateKey={privateKey} walletInfo={walletInfo} />} />
           <Route path="txexplore" element={<TXExplore walletInfo={walletInfo} />} />
+          <Route path="mint" element={<TokenMintForm privateKey={privateKey} walletInfo={walletInfo} />} />
+          <Route path="tokens" element={<MyTokens walletInfo={walletInfo} />} />
+          <Route path="beanmojis" element={<BeanmojiGallery walletAddress={walletInfo?.address} />} />
+          <Route path="myBeans" element={<MyBeanmojis walletAddress={walletInfo?.address} />} />
+          <Route path="tx/:txHash" element={<TXDetails />} />
         </Route>
         <Route
           path="/mobile"
@@ -71,7 +89,11 @@ const AnimatedRoutes = ({ privateKey, walletInfo, handleLogin,  setNotifications
           <Route index element={<p style={{ textAlign: 'center' }}>Select an action above 👆</p>} />
           <Route path="send" element={<MobileTransactionForm walletInfo={walletInfo} privateKey={privateKey} />} />
           <Route path="txexplore" element={<TXExplore walletInfo={walletInfo} />} />
-          <Route path="myBeans" element={<MyBeanmojis walletAddress={walletInfo?.address} />} />  
+          <Route path="mint" element={<TokenMintForm privateKey={privateKey} walletInfo={walletInfo} />} />
+          <Route path="tokens" element={<MyTokens walletInfo={walletInfo} />} />
+          <Route path="beanmojis" element={<BeanmojiGallery walletAddress={walletInfo?.address} />} />
+          <Route path="myBeans" element={<MyBeanmojis walletAddress={walletInfo?.address} />} /> 
+          <Route path="tx/:txHash" element={<TXDetails />} />
         </Route>
       </Routes>
     </AnimatePresence>

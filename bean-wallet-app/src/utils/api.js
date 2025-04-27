@@ -121,6 +121,56 @@ export const fetchFailedTxs = async (walletAddress) => {
   return txList;
 };
 
+export async function fetchMyTokens(address) {
+  const data = await fetchJson(`${getActiveNode()}/layer2/tokens`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ address }),
+  });
+  console.log(address);
+  console.log(data);
+
+  return Array.isArray(data) ? data : [];
+}
+
+export async function fetchTxByHash(txHash) {
+  try {
+    const response = await fetch(`${getActiveNode()}/transaction`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ txHash }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch transaction');
+    }
+
+    const data = await response.json();
+    return typeof data === 'string' ? JSON.parse(data) : data; // 👈 because your backend returns raw JSON string
+  } catch (err) {
+    console.error('❌ fetchTxByHash error:', err);
+    throw err;
+  }
+}
+
+export async function fetchLayer2Nonce(address) {
+  try {
+      const response = await fetch('/api/layer2nonce', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ address })
+      });
+      const nonce = await response.json();
+      return nonce;
+  } catch (error) {
+      console.error('❌ Failed to fetch Layer2 nonce:', error);
+      return null;
+  }
+}
+
+
 
 
 

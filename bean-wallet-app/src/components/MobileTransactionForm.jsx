@@ -70,10 +70,11 @@ const MobileTransactionForm = ({ privateKey, walletInfo }) => {
       const txData = {
         from: walletInfo.address,
         to: trimmedRecipient,
-        amount: parseFloat(amount).toFixed(8),
-        gasFee: gasFeeNum,
+        amount: amountNum,
+        gasFee: Math.round(gasFeeNum * 1_000_000),
         publicKeyHex: walletInfo.publicKey,
-        timeStamp
+        type: 'transfer', 
+        meta: null
       };
 
       console.log("🚨 TX DEBUG:");

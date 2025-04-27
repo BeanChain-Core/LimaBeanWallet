@@ -1,0 +1,96 @@
+/* MyTokens.css */
+
+.token-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--bean-bg);
+    color: var(--bean-text);
+  }
+  
+  .token-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--bean-primary);
+    text-align: center;
+  }
+  
+  .status-msg {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .status-msg.error {
+    color: var(--bean-error);
+  }
+  
+  .status-msg.success {
+    color: var(--bean-primary);
+  }
+  
+  .token-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .token-card {
+    background: var(--bean-card);
+    border: 2px solid var(--bean-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+    color: var(--bean-text);
+  }
+  
+  .token-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    border-color: var(--bean-primary);
+  }
+  
+  .token-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--bean-text);
+  }
+  
+  .token-balance {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--bean-light-text);
+  }
+  
+  .token-flags {
+    margin-bottom: 0.5rem;
+  }
+  
+  .flag {
+    display: inline-block;
+    background: var(--bean-accent2);
+    color: var(--bean-text);
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+  }
+  
+  .flag.capped {
+    background: var(--bean-error);
+    color: #fff;
+  }
+  
+  .flag.open {
+    background: var(--bean-primary);
+    color: #fff;
+  }
+  
+  .token-hash {
+    font-size: 0.9rem;
+    color: var(--bean-light-text);
+    word-break: break-all;
+  }
+  

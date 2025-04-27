@@ -3,11 +3,15 @@ import React, { useEffect, useState } from 'react';
 import './TXExplore.css';
 import { fetchAllTxsForWallet } from '../utils/api';
 import BeanError from './BeanError';
+import { useNavigate } from 'react-router-dom';
+
 
 const TXExplore = ({ walletInfo }) => {
   const walletAddress = walletInfo?.address;
   const [txs, setTxs] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!walletAddress) {
@@ -42,14 +46,15 @@ const TXExplore = ({ walletInfo }) => {
   };
 
   const renderTx = (tx) => (
-    <div className="tx-card" key={tx.txHash}>
-      <p><strong>Status:</strong> {tx.status}</p>
-      <p><strong>Hash:</strong> {tx.txHash}</p>
-      <p><strong>From:</strong> {tx.from}</p>
-      <p><strong>To:</strong> {tx.to}</p>
-      <p><strong>Amount:</strong> {tx.amount}</p>
-      <p><strong>Time:</strong> {new Date(tx.timeStamp).toLocaleString()}</p>
+    <div
+      className="tx-card"
+      key={tx.txHash}
+      onClick={() => navigate(`/tx/${tx.txHash}`)}
+    >
+      <p><strong>Hash:</strong> {tx.txHash.slice(0, 12)}...</p>
+      <p><strong>Type:</strong> {tx.type ?? 'unknown'}</p>
       <p><strong>Nonce:</strong> {tx.nonce}</p>
+      <p><strong>Time:</strong> {new Date(tx.timeStamp).toLocaleString()}</p>
     </div>
   );
 
@@ -57,7 +62,7 @@ const TXExplore = ({ walletInfo }) => {
 
   return (
     <div className="tx-explore-container">
-      <h2>TX Explorer for {walletAddress}</h2>
+      <h2>TX Explorer</h2>
       {renderTxList('Pending TXs', '⏳', tx => tx.status === 'pending')}
       {renderTxList('Failed TXs', '❌', tx => tx.status === 'rejected')}
       {renderTxList('Sent TXs', '✅', tx => tx.from === walletAddress && tx.status === 'complete')}

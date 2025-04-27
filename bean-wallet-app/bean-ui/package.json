@@ -1,0 +1,34 @@
+{
+  "name": "@nonfasho/bean-ui",
+  "version": "1.0.0",
+  "description": "Reusable UI components for BeanChain Wallet and DApps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NonFasho/Bean-UI.git"
+  },
+  "keywords": [
+    "bean",
+    "react",
+    "ui",
+    "blockchain",
+    "wallet"
+  ],
+  "author": "Sam Fawks <samfawk@limabean.xyz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NonFasho/Bean-UI/issues"
+  },
+  "homepage": "https://github.com/NonFasho/Bean-UI#readme",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.4.0",
+    "vite": "^6.3.2"
+  }
+}

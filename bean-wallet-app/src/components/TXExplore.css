@@ -1,13 +1,11 @@
-@import '../styles/variables.css';
-
-/* TXExplore.css */
-
 .tx-explore-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 1rem;
   font-family: 'Inter', sans-serif;
   color: var(--bean-text);
+  width: 100%; /* 🛠️ Add this to force full width */
+  box-sizing: border-box; /* 🛠️ Make padding not cause overflow */
 }
 
 .tx-explore-container h2 {
@@ -36,10 +34,14 @@
   transition: transform 0.2s ease;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  max-width: 100%; /* 🛠️ Add this to stop card overflow */
+  box-sizing: border-box; /* 🛠️ Again, include padding in the width */
+  cursor: pointer;
 }
 
 .tx-card:hover {
   transform: scale(1.01);
+  background-color: var(--bean-accent2);
 }
 
 .tx-card p {
@@ -75,4 +77,6 @@
     font-size: 0.85rem;
   }
 }
+
+
   

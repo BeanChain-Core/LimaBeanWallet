@@ -6,6 +6,20 @@ import { Outlet } from 'react-router-dom';
 import QRCode from './QRCode';
 import { IS_GHOSTNET } from '../config';
 
+const CollapsibleSection = ({ title, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="collapsible-section">
+      <div className="collapsible-header" onClick={() => setIsOpen(!isOpen)}>
+        <span>{title}</span>
+        <span>{isOpen ? '▲' : '▼'}</span>
+      </div>
+      {isOpen && <div className="collapsible-content">{children}</div>}
+    </div>
+  );
+};
+
 
 
 
@@ -21,33 +35,38 @@ const MobileDashboard = ({ walletInfo, privateKey }) => {
     <div className="mobile-dashboard">
       <img src={beanImage} alt="Bean Avatar" className="mobile-bean-avatar" />
 
+      <CollapsibleSection title="Wallet Info">
+        <div className="mobile-section">
+          <label>Address:</label>
+          <div className="mobile-box">{walletInfo.address}</div>
+        </div>
+        <div className="mobile-section">
+          <label>Balance:</label>
+          <div className="mobile-balance">{walletInfo.balance ?? 'Loading...'}</div>
+        </div>
+        <div className="mobile-section">
+          <label>Public Key:</label>
+          <pre className="mobile-key">{walletInfo.publicKey}</pre>
+        </div>
+      </CollapsibleSection>
 
-      <div className="mobile-section">
-        <label>Address:</label>
-        <div className="mobile-box">{walletInfo.address}</div>
-      </div>
-
-      <div className="dashboard-section">
-          <label>Receive QR:</label>
+      <CollapsibleSection title= "Addy QR">
+        <div className="dashboard-section">
           <QRCode data={walletInfo.address} />
-      </div>
+        </div>
+      </CollapsibleSection>
 
-      <div className="mobile-section">
-        <label>Balance:</label>
-        <div className="mobile-balance">{walletInfo.balance ?? 'Loading...'}</div>
-      </div>
+      <CollapsibleSection title= "Navigate">
+        <div className="mobile-actions">
+          <button onClick={() => navigate('/mobile/send')}>Send BEAN</button>
+          <button onClick={() => navigate('/mobile/txexplore')}>My Transactions</button>
+          <button onClick={() => navigate('/beanmojis')}>BeanMojis</button>
+          <button onClick={() => navigate('/myBeans')}>My BeanMoji Collection</button>
+          <button onClick={() => navigate('/dashboard/mint')}>Mint</button>
+          <button onClick={() => navigate('/dashboard/tokens')}>My Tokens</button>
+        </div>
+      </CollapsibleSection>
 
-      <div className="mobile-section">
-        <label>Public Key:</label>
-        <pre className="mobile-key">{walletInfo.publicKey}</pre>
-      </div>
-
-      <div className="mobile-actions">
-        <button onClick={() => navigate('/mobile/send')}>Send BEAN</button>
-        <button onClick={() => navigate('/mobile/txexplore')}>My Transactions</button>
-        <button onClick={() => navigate('/beanmojis')}>BeanMojis</button>
-        <button onClick={() => navigate('/myBeans')}>My BeanMoji Collection</button>
-      </div>
       <Outlet />
     </div>
   );

@@ -102,10 +102,12 @@ const TransactionForm = ({ privateKey, walletInfo }) => {
         to: trimmedRecipient,
         amount: amountNum,
         gasFee: Math.round(gasFeeNum * 1_000_000),
-        publicKeyHex: walletInfo.publicKey
+        publicKeyHex: walletInfo.publicKey,
+        type: 'transfer', 
+        meta: null
       };
 
-      console.log("🔐 Signing TX:", { txData, privateKey, nonce });
+      //console.log("🔐 Signing TX:", { txData, privateKey, nonce });
 
       
       const { txHash, signedTx } = await signTransaction(txData, privateKey, nonce);
