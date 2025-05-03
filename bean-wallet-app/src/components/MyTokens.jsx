@@ -41,7 +41,7 @@ const MyTokens = ({ walletInfo }) => {
             <div
               key={idx}
               className="token-card"
-              // onClick={() => navigate(`/token/${token.tokenHash}`)}
+              onClick={() => navigate(`/dashboard/token/${token.tokenHash}`)}
             >
               <div className="token-name">
                 {token.token} ({token.symbol})

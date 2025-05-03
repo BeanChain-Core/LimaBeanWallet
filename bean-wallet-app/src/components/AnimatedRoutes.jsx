@@ -40,8 +40,8 @@ const AnimatedRoutes = ({ privateKey, walletInfo, handleLogin,  setNotifications
       <Route path="/tokens" element={<PageLayout><MyTokens walletInfo={walletInfo} /></PageLayout>} />
       <Route path="/tx/:txHash" element={<PageLayout><TXDetails /> </PageLayout>} />
       
-      <Route path="/token/:tokenHash" element={<TokenPage />} />
-      <Route path="/send-token/:tokenHash" element={<SendTokenForm walletInfo={walletInfo} privateKey={privateKey} />} />
+      <Route path="/token/:tokenHash" element={<PageLayout><TokenPage walletInfo={walletInfo} privateKey={privateKey}/> </PageLayout>} />
+      <Route path="/send-token/:tokenHash" element={<PageLayout><SendTokenForm walletInfo={walletInfo} privateKey={privateKey} /></PageLayout>} />
 
 
       <Route
@@ -75,6 +75,9 @@ const AnimatedRoutes = ({ privateKey, walletInfo, handleLogin,  setNotifications
           <Route path="beanmojis" element={<BeanmojiGallery walletAddress={walletInfo?.address} />} />
           <Route path="myBeans" element={<MyBeanmojis walletAddress={walletInfo?.address} />} />
           <Route path="tx/:txHash" element={<TXDetails />} />
+
+          <Route path="token/:tokenHash" element={<TokenPage walletInfo={walletInfo} privateKey={privateKey}/> } />
+          <Route path="send-token/:tokenHash" element={<SendTokenForm walletInfo={walletInfo} privateKey={privateKey} />} />
         </Route>
         <Route
           path="/mobile"
@@ -94,6 +97,9 @@ const AnimatedRoutes = ({ privateKey, walletInfo, handleLogin,  setNotifications
           <Route path="beanmojis" element={<BeanmojiGallery walletAddress={walletInfo?.address} />} />
           <Route path="myBeans" element={<MyBeanmojis walletAddress={walletInfo?.address} />} /> 
           <Route path="tx/:txHash" element={<TXDetails />} />
+
+          <Route path="token/:tokenHash" element={<TokenPage walletInfo={walletInfo} privateKey={privateKey}/> } />
+          <Route path="send-token/:tokenHash" element={<SendTokenForm walletInfo={walletInfo} privateKey={privateKey} />} />
         </Route>
       </Routes>
     </AnimatePresence>

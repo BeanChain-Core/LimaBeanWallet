@@ -155,7 +155,7 @@ export async function fetchTxByHash(txHash) {
 
 export async function fetchLayer2Nonce(address) {
   try {
-      const response = await fetch('/api/layer2nonce', {
+      const response = await fetch(`${getActiveNode()}/layer2nonce`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -168,6 +168,17 @@ export async function fetchLayer2Nonce(address) {
       console.error('❌ Failed to fetch Layer2 nonce:', error);
       return null;
   }
+}
+
+
+export async function fetchTokenDetails(tokenHash) {
+  const data = await fetchJson(`${getActiveNode()}/token-details`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tokenHash }),
+  });
+
+  return data ?? null;
 }
 
 

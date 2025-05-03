@@ -1,17 +1,14 @@
-// src/components/TXExplore.jsx
 import React, { useEffect, useState } from 'react';
 import './TXExplore.css';
 import { fetchAllTxsForWallet } from '../utils/api';
 import BeanError from './BeanError';
 import { useNavigate } from 'react-router-dom';
 
-
 const TXExplore = ({ walletInfo }) => {
   const walletAddress = walletInfo?.address;
   const [txs, setTxs] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (!walletAddress) {
@@ -35,14 +32,41 @@ const TXExplore = ({ walletInfo }) => {
     return () => clearInterval(interval);
   }, [walletAddress]);
 
-  const renderTxList = (statusLabel, icon, filter) => {
-    const filtered = txs.filter(filter);
-    return (
-      <section>
-        <h3>{icon} {statusLabel}</h3>
-        {filtered.length ? filtered.map(renderTx) : <p>No {statusLabel.toLowerCase()} txs.</p>}
-      </section>
-    );
+  const groupTxsByDirectionStatusType = (txs) => {
+    const grouped = {};
+
+    txs.forEach(tx => {
+      const direction = tx.from === walletAddress ? 'Sent' : 'Received';
+      const status = tx.status ?? 'unknown';
+      const type = tx.type ?? 'unknown';
+
+      if (!grouped[direction]) grouped[direction] = {};
+      if (!grouped[direction][status]) grouped[direction][status] = {};
+      if (!grouped[direction][status][type]) grouped[direction][status][type] = [];
+
+      grouped[direction][status][type].push(tx);
+    });
+
+    return grouped;
+  };
+
+  const renderGroupedTxs = (grouped) => {
+    return Object.entries(grouped).map(([direction, statuses]) => (
+      <div key={direction} className="direction-section">
+        <h1 className="direction-header">{direction} Transactions</h1>
+        {Object.entries(statuses).map(([status, types]) => (
+          <div key={status} className="status-subsection">
+            <h2 className="status-header">{formatStatus(status)}</h2>
+            {Object.entries(types).map(([type, txList]) => (
+              <div key={type} className="type-subsection">
+                <h3 className="type-header">➔ {type.toUpperCase()} TXs</h3>
+                {txList.length ? txList.map(renderTx) : <p>No {type} transactions.</p>}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    ));
   };
 
   const renderTx = (tx) => (
@@ -52,24 +76,31 @@ const TXExplore = ({ walletInfo }) => {
       onClick={() => navigate(`/tx/${tx.txHash}`)}
     >
       <p><strong>Hash:</strong> {tx.txHash.slice(0, 12)}...</p>
-      <p><strong>Type:</strong> {tx.type ?? 'unknown'}</p>
       <p><strong>Nonce:</strong> {tx.nonce}</p>
       <p><strong>Time:</strong> {new Date(tx.timeStamp).toLocaleString()}</p>
     </div>
   );
 
+  const formatStatus = (status) => {
+    switch (status) {
+      case 'pending': return '⏳ Pending';
+      case 'rejected': return '❌ Failed';
+      case 'complete': return '✅ Complete';
+      default: return '❓ Unknown';
+    }
+  };
+
   if (error) return <BeanError message={error} />;
 
   return (
     <div className="tx-explore-container">
-      <h2>TX Explorer</h2>
-      {renderTxList('Pending TXs', '⏳', tx => tx.status === 'pending')}
-      {renderTxList('Failed TXs', '❌', tx => tx.status === 'rejected')}
-      {renderTxList('Sent TXs', '✅', tx => tx.from === walletAddress && tx.status === 'complete')}
-      {renderTxList('Received TXs', '📥', tx => tx.to === walletAddress && tx.status === 'complete')}
+      <h1>TX Explorer</h1>
+      {renderGroupedTxs(groupTxsByDirectionStatusType(txs))}
     </div>
   );
 };
 
 export default TXExplore;
+
+
 

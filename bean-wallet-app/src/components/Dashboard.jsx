@@ -6,24 +6,38 @@ import useIsMobile from './hooks/useIsMobile';
 import MobileDashboard from './MobileDashboard';
 import QRCode from './QRCode';
 import { IS_GHOSTNET } from '../config';
+import { fetchWalletBalance } from '../utils/api'; 
 
-
-const Dashboard = ({ privateKey, walletInfo }) => {
+const Dashboard = ({ privateKey, walletInfo: initialWalletInfo }) => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const beanImage = IS_GHOSTNET ? "/GhostBean.png" : "/WalletBean.png";
- 
+
+  const [walletInfo, setWalletInfo] = useState(initialWalletInfo);
+
   
-  
+  useEffect(() => {
+    const refreshBalance = async () => {
+      if (!walletInfo?.address) return;
+      try {
+        const balance = await fetchWalletBalance(walletInfo.address); 
+        setWalletInfo(prev => ({
+          ...prev,
+          balance: balance
+        }));
+      } catch (error) {
+        console.error('Failed to refresh balance:', error);
+      }
+    };
 
-  //logs
-  console.log('walletInfo:', walletInfo);
-  console.log('isMobile:', isMobile);
+    const interval = setInterval(refreshBalance, 10000); // every 10 seconds
+    refreshBalance(); 
 
+    return () => clearInterval(interval); 
+  }, [walletInfo?.address]);
 
-  if (!walletInfo) return null; // Prevent errors if walletInfo isn't ready ** ADD LOADING ANIMATION ??
+  if (!walletInfo) return null;
 
-  // Show loading spinner until we know if it's mobile or not
   if (isMobile === undefined || !walletInfo) {
     return (
       <div className="dashboard-loading">
@@ -33,11 +47,9 @@ const Dashboard = ({ privateKey, walletInfo }) => {
     );
   }
 
-  // Render mobile dashboard
   if (isMobile) {
     return <MobileDashboard walletInfo={walletInfo} privateKey={privateKey} />;
   }
-  
 
   return (
     <motion.div
@@ -48,47 +60,42 @@ const Dashboard = ({ privateKey, walletInfo }) => {
       transition={{ duration: 0.4, ease: 'easeInOut' }}
     >
       <div className="dashboard-glow" />
-
-      {/* Wallet Panel */}
+  
       <div className="dashboard-wallet-panel">
-      
         <img src={beanImage} alt="Bean Avatar" className="bean-avatar" />
-
-
+  
         <div className="dashboard-section">
           <label>Wallet Address:</label>
           <div className="address-box">{walletInfo.address}</div>
         </div>
-
+  
         <div className="dashboard-section">
           <label>Receive QR:</label>
           <QRCode data={walletInfo.address} />
         </div>
-
+  
         <div className="dashboard-section balance">
           <label>Balance:</label>
           <div className="balance-number">
             {walletInfo.balance ?? 'Loading...'}
           </div>
         </div>
-
+  
         <div className="dashboard-section">
           <label>Public Key:</label>
           <pre className="public-key">{walletInfo.publicKey}</pre>
         </div>
-
-        <div className="dashboard-actions">
-          <button onClick={() => navigate('/dashboard/send')}>New Transaction</button>
-          <button onClick={() => navigate('/dashboard/txexplore')}>My Transactions</button>
-          <button onClick={() => navigate('/dashboard/beanmojis')}>BeanMojis</button>
-          <button onClick={() => navigate('/dashboard/myBeans')}>My BeanMoji Collection</button>
-          <button onClick={() => navigate('/dashboard/mint')}>Mint</button>
-          <button onClick={() => navigate('/dashboard/tokens')}>My Tokens</button>
-        </div>
       </div>
-
-      {/* Dynamic Page Content */}
+  
       <div className="dashboard-content-panel">
+        <div className="dashboard-top-nav">
+          <button onClick={() => navigate('/dashboard/send')}>SEND BEAN</button>
+          <button onClick={() => navigate('/dashboard/mint')}>MINT</button>
+          <button onClick={() => navigate('/dashboard/tokens')}>MY TOKENS</button>
+          <button onClick={() => navigate('/dashboard/txexplore')}>TRANSACTIONS</button>
+          <button onClick={() => navigate('/dashboard/beanmojis')}>BEANMOJIS</button>
+          <button onClick={() => navigate('/dashboard/myBeans')}>MY BEANMOJIS</button>
+        </div>
         <Outlet />
       </div>
     </motion.div>
@@ -96,5 +103,6 @@ const Dashboard = ({ privateKey, walletInfo }) => {
 };
 
 export default Dashboard;
+
 
 

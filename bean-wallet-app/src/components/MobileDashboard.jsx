@@ -58,12 +58,12 @@ const MobileDashboard = ({ walletInfo, privateKey }) => {
 
       <CollapsibleSection title= "Navigate">
         <div className="mobile-actions">
-          <button onClick={() => navigate('/mobile/send')}>Send BEAN</button>
-          <button onClick={() => navigate('/mobile/txexplore')}>My Transactions</button>
-          <button onClick={() => navigate('/beanmojis')}>BeanMojis</button>
-          <button onClick={() => navigate('/myBeans')}>My BeanMoji Collection</button>
-          <button onClick={() => navigate('/dashboard/mint')}>Mint</button>
-          <button onClick={() => navigate('/dashboard/tokens')}>My Tokens</button>
+          <button onClick={() => navigate('/dashboard/send')}>SEND BEAN</button>
+          <button onClick={() => navigate('/dashboard/mint')}>MINT</button>
+          <button onClick={() => navigate('/dashboard/tokens')}>MY TOKENS</button>
+          <button onClick={() => navigate('/dashboard/txexplore')}>TRANSACTIONS</button>
+          <button onClick={() => navigate('/dashboard/beanmojis')}>BEANMOJIS</button>
+          <button onClick={() => navigate('/dashboard/myBeans')}>MY BEANMOJIS</button>
         </div>
       </CollapsibleSection>
 
