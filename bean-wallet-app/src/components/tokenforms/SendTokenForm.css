@@ -1,0 +1,119 @@
+/* SendTokenForm.css */
+
+/* Base Form Layout */
+.tx-form-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .tx-form-card {
+    background: var(--bean-card);
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--bean-border);
+  }
+  
+  .tx-form-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--bean-text);
+  }
+  
+  .tx-form-card p {
+    font-size: 0.9rem;
+    color: var(--bean-light-text);
+    text-align: center;
+    margin-bottom: 2rem;
+    word-break: break-word;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--bean-text);
+  }
+  
+  input,
+  select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--bean-border);
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    background-color: var(--bean-bg);
+    color: var(--bean-text);
+  }
+  
+  input::placeholder {
+    color: var(--bean-light-text);
+  }
+  
+  input:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--bean-primary);
+    background-color: var(--bean-card);
+  }
+  
+  .helper-text {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--bean-light-text);
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 9999px;
+    background-color: var(--bean-primary);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: var(--bean-accent);
+  }
+  
+  button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+  }
+  
+  .status-msg {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  
+  .status-msg.error {
+    color: var(--bean-error);
+  }
+  
+  .status-msg.success {
+    color: var(--bean-primary);
+  }
+  
+  .fullscreen-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
