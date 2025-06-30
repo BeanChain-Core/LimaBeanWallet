@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import Header from './components/Header';
+import Header from './components/layout/Header';
 import { generateAddress, generatePublicKey } from './utils/walletUtils';
 import { fetchWalletBalance } from './utils/api';
-import AnimatedRoutes from './components/AnimatedRoutes';
+import AnimatedRoutes from './components/utils/AnimatedRoutes';
 import './components/Main.css';
-import Footer from './components/Footer';
+import Footer from './components/layout/Footer';
 import { useLocation } from 'react-router-dom';
-import { IS_GHOSTNET } from './config';
+import { isGhostNet } from './config';
+import SmartSearchBar from './components/utils/SmartSearchBar';
+import NavigationControls from './components/utils/NavigationControl';
 
 function AppWrapper() {
   return (
@@ -39,7 +41,7 @@ function App() {
     setWalletInfo({ publicKey, address, balance });
     sessionStorage.setItem('privateKey', privateKeyHex);
   
-    if (location.pathname === '/login' || location.pathname === '/generate-key') {
+    if (location.pathname === '/' || location.pathname === '/generate-key') {
       navigate('/dashboard');
     }
   };
@@ -48,7 +50,11 @@ function App() {
     sessionStorage.removeItem('privateKey');
     setPrivateKey(null);
     setWalletInfo(null);
-    navigate('/');
+
+    // Wait until state updates before navigating
+    setTimeout(() => {
+      navigate('/');
+    }, 0); // Give React a tick to update
   };
 
 
@@ -67,7 +73,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (IS_GHOSTNET) {
+    if (isGhostNet) {
       document.documentElement.classList.add('ghostnet-theme');
     } else {
       document.documentElement.classList.remove('ghostnet-theme');
@@ -76,16 +82,16 @@ function App() {
 
   return (
     <div className="App">
-      <Header
+      {/* <Header
         isLoggedIn={!!privateKey}
-        onLoginClick={() => navigate('/login')}
+        onLoginClick={() => navigate('/')}
         onLogoutClick={handleLogout}
         onHomeClick={() => navigate('/')}
         onDashboardClick={() => navigate('/dashboard')}
         notifications={notifications}
         showNotifDropdown={showNotifDropdown}
         setShowNotifDropdown={setShowNotifDropdown}
-      />
+      /> */}
       
 
 
@@ -101,7 +107,7 @@ function App() {
     </main>
     
     
-
+    <NavigationControls/>
     </div>
   );
 }
