@@ -1,8 +1,8 @@
 import React from 'react';
 import useIsMobile from './hooks/useIsMobile';
 import TransactionForm from './TransactionForm';
-import MobileTransactionForm from './MobileTransactionForm';
-import LoadingBean from './LoadingBean'; // 👈 You'll create this component
+import MobileTransactionForm from './mobile/MobileTransactionForm';
+import LoadingBean from './messages/LoadingBean'; // 👈 You'll create this component
 
 const ResponsiveTxForm = ({ privateKey, walletInfo }) => {
   const isMobile = useIsMobile();

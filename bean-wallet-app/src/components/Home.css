@@ -3,12 +3,12 @@
 
 .home-container {
   position: relative;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   background: linear-gradient(160deg, var(--bean-bg), var(--bean-secondary)); /* dynamic background */
   z-index: 1;
@@ -17,6 +17,7 @@
 .spinning-logo {
   width: clamp(120px, 20vw, 300px);
   height: auto;
+  margin-top: 86.42px !important;
   margin-bottom: 2rem;
   /* animation: spin 10s linear infinite; */
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
@@ -53,6 +54,10 @@ p {
   z-index: 0;
 }
 
+.toggle {
+  margin-top: 20px;
+}
+
 .falling-bean {
   position: absolute;
   top: -60px;
@@ -68,10 +73,60 @@ p {
     opacity: 0.6;
   }
   100% {
-    transform: translateY(110vh) rotate(360deg);
+    transform: translateY(100vh) rotate(360deg);
     opacity: 0;
   }
 }
 
+.home-welcome-card {
+  background: var(--bean-card);
+  border: 1px solid var(--bean-border);
+  border-radius: 1rem;
+  box-shadow: 0 0 25px rgba(0, 255, 90, 0.1);
+  padding: 2rem;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  margin-top: 1rem;
+  margin-bottom: 100px;
+}
 
+@media (max-width: 768px) {
+  .home-container {
+    height: 100%;
+    max-width: 95vw;
+    padding: 2rem 1rem;
+  }
+
+  .spinning-logo {
+    width: 140px;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .home-welcome-card {
+    padding: 1.5rem;
+    width: 80%;
+    margin-top: 1rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .bean-rain {
+    height: 100%;
+  }
+
+  .falling-bean {
+    width: 22px;
+    animation-duration: 10s;
+  }
+}
   

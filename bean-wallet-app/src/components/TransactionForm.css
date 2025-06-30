@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding: 2rem;
   background: var(--bean-bg);
@@ -184,7 +184,7 @@ input[type="number"] {
   left: 0;
   z-index: 9999;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: #ffffff;
   display: flex;
   align-items: center;

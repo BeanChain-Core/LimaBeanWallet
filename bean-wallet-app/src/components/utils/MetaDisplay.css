@@ -1,0 +1,30 @@
+.meta-display {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.meta-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.meta-label {
+  font-weight: bold;
+  margin-right: 0.5rem;  /* spacing between key and value */
+  min-width: 100px;      /* or adjust for alignment */
+}
+
+.meta-value {
+  word-break: break-all;
+  flex: 1;
+}
+
+.token-link {
+  color: var(--bean-accent);
+  text-decoration: none;
+}
+
+.token-link:hover {
+  text-decoration: underline;
+}
