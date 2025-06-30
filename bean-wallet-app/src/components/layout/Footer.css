@@ -1,0 +1,113 @@
+@import '../../styles/variables.css';
+
+
+.app-footer {
+  width: 100%;
+  max-height: 200px;
+  padding: 1rem 2rem;
+  background-color: var(--bean-bg);
+  border-top: 1px solid var(--bean-border);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto 1rem auto;
+  position: relative;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  margin: 0.5rem;
+}
+
+.footer-section h4 {
+  margin-bottom: 0.5rem;
+  color: var(--bean-text);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 0.3rem;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: var(--bean-text);
+  transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+  color: var(--bean-primary);
+}
+
+.footer-bean {
+  align-self: center;
+  height: 60px;
+}
+
+.footer-bottom-text {
+  font-size: 0.85rem;
+  color: var(--bean-light-text);
+}
+
+.node-selector {
+  padding: 0.4rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--bean-border, #ccc);
+  background-color: white;
+  color: black;
+  font-family: 'Orbitron', sans-serif;
+  margin-top: 0.5rem;
+}
+
+.active-node-label {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--bean-text, #333);
+  font-family: 'Orbitron', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    max-height: none; /* remove the height limit for mobile */
+    padding: 2rem 1rem; /* more breathing room */
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* add spacing between sections */
+  }
+
+  .footer-section {
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    max-height: 30px;
+  }
+
+  .footer-bean {
+    position: static;
+    margin: 1.5rem auto 0 auto;
+  }
+
+  .footer-bottom-text {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    text-align: center;
+    padding-bottom: 0.5rem;
+  }
+}
+

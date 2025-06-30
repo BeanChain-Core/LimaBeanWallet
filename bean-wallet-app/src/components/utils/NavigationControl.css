@@ -1,0 +1,30 @@
+.navigation-controls {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  z-index: 999;
+}
+
+.nav-btn {
+  background-color: var(--bean-card);
+  color: var(--bean-text);
+  border: 1px solid var(--bean-border);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: var(--bean-accent);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .nav-btn {
+    display: none;
+  }
+}

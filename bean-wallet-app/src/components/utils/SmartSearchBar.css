@@ -1,0 +1,81 @@
+.search-banner-container {
+  width: 100%;
+  background-color: var(--bean-bg);
+  border-bottom: 1px solid var(--bean-border);
+  border-top: 1px solid var(--bean-border);
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.search-banner-form {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.3rem 0.4rem !important;
+  width: 100% !important;
+  max-width: 700px !important;
+  background-color: var(--bean-card);
+  border: 1.5px solid var(--bean-border);
+  border-radius: 999px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.search-banner-input {
+  flex: 1 !important;
+  min-width: 0 !important; /* ← was causing overflow on mobile */
+  padding: 0.5rem 1rem !important;
+  font-size: 0.95rem !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--bean-text) !important;
+  box-sizing: border-box;
+}
+
+.search-banner-input::placeholder {
+  color: var(--bean-text);
+  opacity: 0.5;
+}
+
+.search-banner-input:focus {
+  outline: none !important;
+}
+
+.search-banner-button {
+  margin: 0 0.3rem !important;
+  padding: 0.4rem 0.6rem !important;
+  font-size: 1.1rem !important;
+  border: none;
+  background: none;
+  color: var(--bean-text) !important;
+  cursor: pointer;
+  max-width: 100px;
+}
+
+.search-banner-button:hover {
+  color: var(--bean-accent) !important;
+}
+
+/* Mobile tweaks */
+@media (max-width: 500px) {
+  .search-banner-form {
+    max-width: 95% !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .search-banner-input {
+    font-size: 0.9rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+
+  .search-banner-button {
+    font-size: 1rem !important;
+    padding: 0.3rem !important;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+}
