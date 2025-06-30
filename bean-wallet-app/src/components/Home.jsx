@@ -2,14 +2,17 @@ import React from 'react';
 import './Home.css';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { IS_GHOSTNET } from '../config';
+import DarkModeToggle from './utils/DarkModeToggle';
+import { isGhostNet } from '../config';
+
+import WalletImportInline from './toolpages/WalletImportInline';
 
 
 
 
-const Home = ({ isLoggedIn }) => {
+const Home = ({ isLoggedIn, onLogin }) => {
   const navigate = useNavigate();
-  const beanImage = IS_GHOSTNET ? "/GhostBean.png" : "/WalletBean.png";
+  const beanImage = isGhostNet ? "/GhostBean.png" : "/WalletBean.png";
 
   return (
     <motion.div
@@ -28,27 +31,43 @@ const Home = ({ isLoggedIn }) => {
       
       
 
-      {!isLoggedIn && (
-        <>
+      {!isLoggedIn ? (
+        <div className="home-welcome-card">
           <h2>
-            {IS_GHOSTNET
+            {isGhostNet
               ? 'Welcome to LimaBeanWallet (GhostNet)'
               : 'Welcome to LimaBeanWallet Beta'}
           </h2>
-          <h4>
-            powered by {IS_GHOSTNET ? 'GhostBeanChain' : 'BeanChain'}
+          <h4 className="powered-text">
+            powered by {isGhostNet ? 'GhostBeanChain' : 'BeanChain'}
           </h4>
-          <p>{IS_GHOSTNET ? 'You are in testnet mode. Your BEAN is spooky, but not real.' : 'Login up top!'}</p>
-          <p>{IS_GHOSTNET ? 'Generate a wallet below to explore GhostNet.' : 'or click below to get started!'}</p>
-          <button onClick={() => navigate('/generate-key')}>
-            {IS_GHOSTNET ? 'Create Ghost Wallet' : 'Generate New Wallet'}
-          </button>
-        </>
-      )}
 
-      {isLoggedIn && (
+          <p className="home-description">
+            {isGhostNet
+              ? 'We are still in TestNet but this is what the GhostNet theme will look like. Your BEAN is spooky, but not real.'
+              : 'We are still in TestNet but this is what the MainNet theme will look like.'}
+          </p>
+
+          <p className="home-description">
+            {isGhostNet
+              ? 'Generate a wallet below to explore GhostNet.'
+              : 'or click below to get started!'}
+          </p>
+
+          <div className="home-button-section">
+            <button onClick={() => navigate('/generate-key')}>
+              {isGhostNet ? 'Create Ghost Wallet' : 'Generate New Wallet'}
+            </button>
+          </div>
+
+          <p className="home-or-text">or import an existing wallet:</p>
+          <WalletImportInline onLogin={onLogin} />
+        </div>
+      ) : (
         <h2>If you are lost hit that "Dashboard" button up top!</h2>
       )}
+      {/* <div className='toggle'><DarkModeToggle showLightDark={false}/></div> */}
+      
     </motion.div>
   );
 };

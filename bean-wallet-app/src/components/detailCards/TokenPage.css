@@ -1,0 +1,96 @@
+/* TokenPage.css */
+
+.token-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .token-card {
+    background: var(--bean-card);
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 1.5rem;
+    border: 1px solid var(--bean-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .token-card h2 {
+    font-size: 2rem;
+    color: var(--bean-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .token-info {
+    margin-bottom: 2rem;
+  }
+  
+  .token-info p {
+    margin: 0.5rem 0;
+    color: var(--bean-text);
+    word-break: break-word;
+  }
+  
+  .token-hash {
+    background: var(--bean-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--bean-accent);
+    border: 1px solid var(--bean-border);
+  }
+  
+  .mint-more-section {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--bean-card);
+    border-radius: 12px;
+  }
+  
+  .mint-more-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .mint-more-section input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--bean-border);
+    border-radius: 8px;
+  }
+  
+  .mint-more-section button {
+    background: var(--bean-primary);
+    color: var(--bean-text);
+    padding: 0.75rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .mint-more-section button:hover {
+    background: var(--bean-accent);
+  }
+  
+  .error-text {
+    color: var(--bean-error);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .token-button-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* space between buttons */
+  }
+
+  .token-btn {
+    max-width: 150px !important;
+  }
+  

@@ -1,0 +1,30 @@
+.inline-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.key-input {
+  padding: 0.5rem;
+  font-family: monospace;
+  border: 1px solid var(--bean-border);
+  border-radius: 8px;
+  width: 100%;
+}
+
+.key-input.valid {
+  border-color: var(--bean-accent2);
+}
+
+.key-input.invalid {
+  border-color: red;
+}
+
+/* button.scan-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--bean-accent);
+} */

@@ -1,0 +1,19 @@
+.faucet-subtext {
+  font-size: 0.85rem;
+  color: var(--bean-accent);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.faucet-subtext a {
+  text-decoration: none;
+  color: var(--bean-accent);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.faucet-subtext a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+

@@ -1,0 +1,148 @@
+@import '../../styles/variables.css';
+
+.mobile-tx-form-container {
+  padding: 1rem;
+  background: var(--bean-bg);
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-tx-form-card {
+  background-color: var(--bean-card);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.mobile-tx-form-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: var(--bean-text);
+}
+
+.mobile-form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.mobile-form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: var(--bean-text);
+}
+
+
+
+.mobile-form-group input,
+.mobile-form-group select {
+  margin-left: 10px !important;
+  min-width: 50%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: var(--bean-accent2);
+  border: 1px solid var(--bean-border);
+  border-radius: 8px;
+  color: var(--bean-text);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.mobile-form-group input:hover,
+.mobile-form-group select:hover {
+  background-color: #f1f1f1;
+}
+
+.mobile-form-group input:focus,
+.mobile-form-group select:focus {
+  border-color: var(--bean-primary);
+  outline: none;
+  box-shadow: 0 0 4px rgba(192, 219, 199, 0.3);
+}
+
+.mobile-tx-form-card button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: var(--bean-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-tx-form-card button:hover:not(:disabled) {
+  background-color: var(--bean-secondary);
+}
+
+.mobile-tx-form-card button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.mobile-status-msg {
+  margin-top: 1.5rem;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.mobile-status-msg.error {
+  color: var(--bean-error);
+}
+
+.mobile-status-msg.success {
+  color: var(--bean-primary);
+}
+
+.helper-text {
+  font-size: 0.85rem;
+  color: var(--bean-light-text);
+  text-align: left;
+}
+
+.helper-text a {
+  color: var(--bean-accent);
+  text-decoration: none;
+}
+
+.helper-text a:hover {
+  color: var(--bean-primary);
+  text-decoration: underline;
+}
+
+.qr-scan-button {
+  background-color: var(--bean-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: fit-content;
+}
+
+.qr-scan-button:hover {
+  background-color: var(--bean-secondary);
+}
+ 
+.container {
+  background-color: var(--bean-card);
+  border-radius: 20px;
+  border: 1px var(--bean-border);
+  width: 80%;
+  margin-top: 50px !important;
+  
+}
+
+  

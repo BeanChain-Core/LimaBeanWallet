@@ -1,26 +1,32 @@
 @import './styles/variables.css';
 
 
+
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
   background-color: var(--bean-bg);
   color: var(--bean-text);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  max-width: 100%;
+  min-height: 100%;
   background-color: var(--bean-bg);
+  overflow-x: hidden;
 }
 
 .main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  margin-top: 10px;
 }
 
 

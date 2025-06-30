@@ -1,5 +1,6 @@
 function getActiveNode() {
   return 'https://limabean.xyz/api';
+  //return 'http://localhost:8080/api';
 }
 
 
@@ -181,6 +182,24 @@ export async function fetchTokenDetails(tokenHash) {
   return data ?? null;
 }
 
+export async function fetchMempool() {
+  const data = await fetchJson(`${getActiveNode()}/mempool`);
+  console.log("📦 Raw mempool data:", data);
+
+  if (!data || typeof data !== 'object') return [];
+
+  const parsed = Object.values(data).map((txStr, i) => {
+    try {
+      return JSON.parse(txStr);
+    } catch (e) {
+      console.warn(`⚠️ Failed to parse mempool TX #${i}:`, e, txStr);
+      return null;
+    }
+  }).filter(Boolean);
+
+  console.log("✅ Parsed mempool:", parsed);
+  return parsed;
+}
 
 
 
