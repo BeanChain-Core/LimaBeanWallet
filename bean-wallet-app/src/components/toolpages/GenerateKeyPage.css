@@ -1,0 +1,74 @@
+@import '../../styles/variables.css';
+
+
+.generate-key-container {
+  max-width: 100vw;
+  margin: 300px auto;
+  padding: 2rem;
+  background-color: var(--bean-bg);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.generate-btn,
+.login-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--bean-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.generate-btn:hover,
+.login-btn:hover {
+  background-color: var(--bean-secondary);
+}
+
+.warning-text {
+  color: #c62828;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.private-key-box {
+  width: 100%;
+  padding: 1rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: rgb(72, 173, 114);
+  color: var(--bean-text);
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .generate-key-container {
+    margin: 100px 1rem;
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .generate-btn,
+  .login-btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+  }
+
+  .private-key-box {
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
+
+  .warning-text {
+    font-size: 0.9rem;
+  }
+}
