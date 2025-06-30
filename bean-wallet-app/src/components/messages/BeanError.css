@@ -1,0 +1,19 @@
+@import '../../styles/variables.css';
+
+
+.bean-error-container {
+  text-align: center;
+  padding: 3rem;
+  color: var(--bean-error);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.bean-error-img {
+  width: 150px;
+  margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
