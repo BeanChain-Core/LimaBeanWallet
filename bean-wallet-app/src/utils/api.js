@@ -10,20 +10,17 @@ async function fetchJson(url, options = {}) {
   try {
     const res = await fetch(url, options);
     const contentType = res.headers.get('content-type') || '';
+    const rawText = await res.text();
 
-    if (!contentType.includes('application/json')) {
-      const rawText = await res.text(); // get body even if content-type is off
-      console.warn(`⚠️ Unexpected response type: ${contentType}, body:`, rawText);
-      throw new Error(`Invalid content type: ${contentType}`);
+    if (!res.ok) {
+      throw new Error(`Request failed: ${rawText}`);
     }
 
-    const data = await res.json();
-
-    if (!res.ok || (data.status && data.status !== 'success')) {
-      throw new Error(data.message || 'Request failed');
+    if (contentType.includes('application/json') || contentType.includes('text/plain')) {
+      return JSON.parse(rawText);
     }
 
-    return data;
+    throw new Error(`Unsupported content-type: ${contentType}`);
   } catch (err) {
     console.error(`❌ fetchJson error for ${url}:`, err);
     return null;
@@ -199,6 +196,35 @@ export async function fetchMempool() {
 
   console.log("✅ Parsed mempool:", parsed);
   return parsed;
+}
+
+export async function fetchAllTokens() {
+  const data = await fetchJson(`${getActiveNode()}/tokens/all`);
+  return Array.isArray(data) ? data : [];
+}
+
+export async function fetchRejectedTxByHash(hash) {
+  const data = await fetchJson(`${getActiveNode()}/rejected/hash/${hash}`);
+  return data ?? null;
+}
+
+export async function fetchTokenHolders(tokenHash) {
+  const data = await fetchJson(`${getActiveNode()}/${tokenHash}/holders`);
+  return Array.isArray(data) ? data : [];
+}
+
+export async function fetchAllRejectedTxs() {
+  const data = await fetchJson(`${getActiveNode()}/rejected/all`);
+  if (!data) return [];
+
+  return Object.values(data).map((txStr, i) => {
+    try {
+      return JSON.parse(txStr);
+    } catch (e) {
+      console.warn(`⚠️ Failed to parse rejected TX #${i}:`, e, txStr);
+      return null;
+    }
+  }).filter(Boolean);
 }
 
 
