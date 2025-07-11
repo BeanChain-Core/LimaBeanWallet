@@ -44,6 +44,11 @@ export default function WalletViewer() {
         <strong>Address:</strong>
         <div className="wallet-address"><span title={address}>{resolveAlias(address)}</span></div>
       </div>
+      <div className="wallet-section wallet-center">
+        <Link to={`/dashboard/send?address=${address}`}>
+            <button className="send-bean-btn">Send BEAN to this wallet</button>
+        </Link>
+      </div>
 
       <div className="wallet-section bean">
         <strong>BEAN Balance:</strong>

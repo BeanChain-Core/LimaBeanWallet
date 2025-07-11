@@ -1,176 +1,183 @@
 @import '../../styles/variables.css';
 
-/* Container */
+/* -----------------------------------
+   Mobile Dashboard Container
+----------------------------------- */
 .mobile-dashboard {
   padding: 1rem;
-  background-color: var(--bean-bg);
+  background: var(--bean-bg);
+  color: var(--bean-text);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
 }
 
-/* Avatar */
+/* -----------------------------------
+   Bean Avatar
+----------------------------------- */
 .mobile-bean-avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 60px 0 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Title */
-.mobile-dashboard-title {
-  font-size: 1.5rem;
-  margin-bottom: 1.2rem;
-  color: var(--bean-text);
-  text-align: center;
-}
-
-/* Sections */
-.mobile-section {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.mobile-section label {
-  font-weight: bold;
   display: block;
-  margin-bottom: 0.3rem;
-  color: var(--bean-text);
+  margin: 0 auto 1rem;
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--bean-accent);
 }
 
-/* Info Boxes */
-.mobile-box,
-.mobile-balance,
-.mobile-key {
-  background: var(--bean-accent2);
-  padding: 0.8rem;
-  border: 1px solid var(--bean-border);
-  border-radius: 8px;
-  font-family: monospace;
-  font-size: 0.85rem;
-  word-break: break-word;
-  color: var(--bean-light-text);
-}
-
-.mobile-balance {
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.mobile-key {
-  white-space: pre-wrap;
-  overflow: auto;
-  max-height: 120px;
-}
-
-/* Action Buttons */
-.mobile-actions {
-  margin-top: 1.5rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.mobile-actions button {
-  padding: 0.75rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: var(--bean-primary);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.mobile-actions button:hover {
-  background-color: var(--bean-secondary);
-}
-
-/* Wallet username */
-.wallet-username {
-  font-size: 1rem;
-  color: var(--bean-text);
-  margin-bottom: 0.75rem;
-  text-align: center;
-}
-
-/* Collapsible Sections */
-.collapsible-section {
-  border: 1px solid var(--bean-border);
-  background-color: var(--bean-card);
-  border-radius: 16px;
-  margin: 0.5rem 0;
-  overflow: hidden;
-  width: 85%;
-}
-
-.collapsible-header {
-  background-color: var(--bean-accent2);
-  color: var(--bean-text);
-  padding: 0.4rem 0.8rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.collapsible-header:hover {
-  background-color: var(--bean-accent);
-}
-
-.collapsible-content {
-  padding: 0.3rem 0.4rem;
-  background-color: var(--bean-card);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-/* Balance Bar */
+/* -----------------------------------
+   Balance Bar
+----------------------------------- */
 .mobile-balance-bar {
-  background-color: var(--bean-card);
-  width: 80% !important;
-  height: 200px;
-  padding: 1rem;
-  margin: 0 1rem 1rem;
+  background: var(--bean-card);
+  border: 1px solid var(--bean-border);
   border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
-  box-shadow: 0 0 15px rgba(0, 255, 90, 0.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
 .balance-label {
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .balance-amount {
-  font-size: 1.3rem;
-  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--bean-light-text);
+  margin-bottom: 1rem;
 }
 
-/* Compact Action Buttons (nested) */
+
+
 .action-buttons {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  min-width: 80% !important;
+}
+
+
+.action-buttons button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: var(--bean-accent);
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  min-width: 80% !important;
+}
+
+.action-buttons button:hover {
+  background: var(--bean-accent2);
+}
+
+/* -----------------------------------
+   Collapsible Sections
+----------------------------------- */
+.collapsible-section {
+  margin-bottom: 1rem;
+  background: var(--bean-card);
+  border: 1px solid var(--bean-border);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.collapsible-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bean-card);
+  color: var(--bean-text);
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--bean-border);
+}
+
+.collapsible-content {
+  padding: 0.75rem 1rem;
+}
+
+/* -----------------------------------
+   Section Styles
+----------------------------------- */
+.mobile-section {
+  margin-bottom: 1rem;
+}
+
+.mobile-box {
+  word-break: break-all;
+  background: var(--bean-bg);
+  border: 1px solid var(--bean-border);
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.mobile-key {
+  font-family: monospace;
+  font-size: 0.8rem;
+  background: var(--bean-bg);
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--bean-border);
+  word-break: break-word;
+}
+
+/* -----------------------------------
+   Token Balances
+----------------------------------- */
+.mobile-token-list {
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-.action-buttons button {
-  font-size: 0.85rem;
-  padding: 0.4rem 0.8rem;
+.mobile-token-item {
+  background: var(--bean-bg);
+  border: 1px solid var(--bean-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
 }
 
-/* Spacer (bottom space) */
+/* -----------------------------------
+   Navigation Buttons
+----------------------------------- */
+.mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-actions button {
+  padding: 0.6rem 1rem;
+  background: var(--bean-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.mobile-actions button:hover {
+  background: var(--bean-accent2);
+}
+
+/* -----------------------------------
+   Spacer
+----------------------------------- */
 .spacer {
-  height: 42vh;
+  height: 4rem;
 }

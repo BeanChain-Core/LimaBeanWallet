@@ -21,6 +21,30 @@ const AboutContent = {
 
       This mechanism ensures fair distribution, discourages spamming, and rewards early participants in the BeanChain network.`
     },
+    'seed-phrases': {
+      title: 'What is a Seed Phrase?',
+      body: `A seed phrase is a set of 12 or 24 simple words that acts as the master key to your wallet. It’s generated when you create a new wallet and can be used to restore access to your funds on any compatible wallet app.
+
+    Unlike usernames or passwords, seed phrases **should never be stored online or shared**. Anyone with access to your seed phrase can take full control of your wallet and assets.
+
+    Each word in the phrase is chosen from a standardized list of 2048 English words. This ensures compatibility across different wallets and blockchains that use the same BIP-39 standard.
+
+    **If you lose your seed phrase, you lose access to your wallet forever.** There's no way to reset or recover it. That's why it’s important to store it somewhere safe — offline, and ideally written down in multiple secure locations.`
+    },
+    'seed-phrase-entry': {
+      title: 'How to Enter a Seed Phrase Correctly',
+      body: `A seed phrase (also called a recovery phrase or mnemonic) is a sequence of 12 or 24 words that can regenerate your wallet and access your $BEAN tokens.
+
+    Each word must be separated by a **single space** — not commas, line breaks, or double spaces. For example:
+
+    \`seed bulb quantum apple solar joke roast echo... \`
+
+    If any word is misspelled or spacing is incorrect, the phrase will be considered invalid and cannot be used to recover your wallet.
+
+    Seed phrases are case-insensitive, but they must exactly match one of the approved words from the official wordlist.
+
+    For security, never share your seed phrase with anyone. Anyone who has access to it can access your wallet and funds.`
+    },
     gasfee: {
       title: 'Understanding Gas Fees on BeanChain',
       body: `Every transaction on BeanChain requires a small **gas fee** to reward validators and keep the network secure.

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchTokenDetails, submitTransaction , fetchWalletNonce, fetchPendingTxs} from '../../utils/api';
+import { fetchTokenDetails, submitTransaction , fetchWalletNonce, fetchPendingTxs, fetchTokenHolders} from '../../utils/api';
 import { getPublicKeyFromPrivate, signTransaction } from '../../utils/signingUtils';
 import { Link } from 'react-router-dom';
 import './TokenPage.css';
@@ -15,6 +15,7 @@ const TokenPage = ({ walletInfo, privateKey }) => {
   const [minting, setMinting] = useState(false);
   const [mintError, setMintError] = useState(null);
   const [nonce, setNonce] = useState(null);
+  const [holders, setHolders] = useState([]);
 
   useEffect(() => {
       const syncNonce = async () => {
@@ -39,6 +40,8 @@ const TokenPage = ({ walletInfo, privateKey }) => {
       syncNonce();
     }, [walletInfo]);
 
+    
+
 
   useEffect(() => {
     const loadToken = async () => {
@@ -53,7 +56,18 @@ const TokenPage = ({ walletInfo, privateKey }) => {
       }
     };
 
+    const loadHolders = async () => {
+      try {
+        const list = await fetchTokenHolders(tokenHash);
+        setHolders(list);
+        console.log('👥 Token Holders:', list);
+      } catch (err) {
+        console.error('Failed to fetch token holders:', err);
+      }
+    };
+
     loadToken();
+    loadHolders();
   }, [tokenHash]);
 
   const handleMintMore = async (e) => {
@@ -142,22 +156,43 @@ const TokenPage = ({ walletInfo, privateKey }) => {
             </div>
 
             {/* 👇 If token is mintable, show mint-more form */}
-            {(tokenInfo.tokenMetaAsJson.open || walletInfo.address?.toLowerCase() === tokenInfo.tokenMetaAsJson.minter?.toLowerCase()) && (
-              <div className="mint-more-section">
-                <h3>Mint More</h3>
-                <form onSubmit={handleMintMore}>
-                  <input
-                    type="text"
-                    inputMode="decimal"
-                    placeholder="Amount to Mint"
-                    value={mintAmount}
-                    onChange={(e) => setMintAmount(e.target.value)}
-                  />
-                  <button type="submit" disabled={minting}>
-                    {minting ? 'Minting...' : 'Mint More'}
-                  </button>
-                </form>
-                {mintError && <p className="error-text">{mintError}</p>}
+            {tokenInfo.tokenMetaAsJson.mintable !== false && 
+              (tokenInfo.tokenMetaAsJson.open || walletInfo.address?.toLowerCase() === tokenInfo.tokenMetaAsJson.minter?.toLowerCase()) && (
+                <div className="mint-more-section">
+                  <h3>Mint More</h3>
+                  <form onSubmit={handleMintMore}>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="Amount to Mint"
+                      value={mintAmount}
+                      onChange={(e) => setMintAmount(e.target.value)}
+                    />
+                    <button type="submit" disabled={minting}>
+                      {minting ? 'Minting...' : 'Mint More'}
+                    </button>
+                  </form>
+                  {mintError && <p className="error-text">{mintError}</p>}
+                </div>
+            )}
+
+            {holders.length > 0 && (
+              <div className="holders-section">
+                <h3>Token Holders</h3>
+                <div className="holders-table">
+                  <div className="holders-header">
+                    <span>Wallet</span>
+                    <span>Balance</span>
+                  </div>
+                  {holders.map((h, idx) => (
+                    <div className="holders-row" key={idx}>
+                      <Link to={`/wallet/${h.address}`} className="holder-address">
+                        {h.address}
+                      </Link>
+                      <span>{h.balance} {tokenInfo.tokenMetaAsJson.symbol}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
             

@@ -24,6 +24,8 @@ import SendTokenForm from '../../components/tokenforms/SendTokenForm';
 import BurnTokenForm from '../../components/tokenforms/BurnTokenForm';
 import WalletViewer from '../explorerLite/WalletViewer';
 import MempoolViewer from '../MempoolViewer';
+import RejectedTXDetails from '../detailCards/RejectedTXDetails';
+import RejectedTXList from '../detailCards/RejectedTXList';
 
 
 const AnimatedRoutes = ({
@@ -75,7 +77,8 @@ const AnimatedRoutes = ({
       <Route path="/send-token/:tokenHash" element={<PageLayout {...sharedLayoutProps}><SendTokenForm walletInfo={walletInfo} privateKey={privateKey} /></PageLayout>} />
 
       <Route path="/mempool" element={<PageLayout {...sharedLayoutProps}><MempoolViewer /></PageLayout>} />
-
+      <Route path="/rejected/:txHash" element={<PageLayout {...sharedLayoutProps}><RejectedTXDetails /> </PageLayout>} />
+      <Route path="/dev/rejected" element={<PageLayout {...sharedLayoutProps}><RejectedTXList /> </PageLayout>} />
       <Route
         path="/dashboard"
         element={

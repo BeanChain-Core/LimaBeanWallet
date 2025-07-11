@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Outlet } from 'react-router-dom';
 import QRCode from '../utils/QRCode';
 import FaucetDripButton from '../utils/FaucetDripButton';
 import { IS_GHOSTNET } from '../../config';
+import { fetchMyTokens } from '../../utils/api';
 import './MobileDashboard.css';
 
 const CollapsibleSection = ({ title, children }) => {
@@ -23,6 +24,13 @@ const MobileDashboard = ({ walletInfo, privateKey }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const beanImage = IS_GHOSTNET ? "/GhostBean.png" : "/WalletBean.png";
+  const [tokenBalances, setTokenBalances] = useState([]);
+
+  useEffect(() => {
+    if (walletInfo?.address) {
+      fetchMyTokens(walletInfo.address).then(setTokenBalances).catch(console.error);
+    }
+  }, [walletInfo?.address]);
 
   if (!walletInfo) return null;
 
@@ -32,12 +40,25 @@ const MobileDashboard = ({ walletInfo, privateKey }) => {
 
       {/* Top balance + action bar */}
       <div className="mobile-balance-bar">
-        <div className="balance-label">Balance:</div>
+        <div className="balance-label">$BEAN:</div>
         <div className="balance-amount">{walletInfo.balance ?? 'Loading...'}</div>
+        
         <div className="action-buttons">
           <button onClick={() => navigate('/dashboard/send')}>SEND</button>
           <FaucetDripButton address={walletInfo?.address} />
         </div>
+
+        {tokenBalances.length > 0 && (
+          <CollapsibleSection title="Token Balances">
+            <div className="mobile-token-list">
+              {tokenBalances.map((token, i) => (
+                <div key={i} className="mobile-token-item">
+                  <strong>{token.symbol}</strong>: {token.balance}
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
       </div>
 
       <CollapsibleSection title="Wallet Info">

@@ -6,7 +6,7 @@ import useIsMobile from '../hooks/useIsMobile';
 import MobileDashboard from '../mobile/MobileDashboard';
 import QRCode from '../utils/QRCode';
 import { IS_GHOSTNET } from '../../config';
-import { fetchWalletBalance } from '../../utils/api'; 
+import { fetchWalletBalance, fetchMyTokens } from '../../utils/api'; 
 import FaucetDripButton from '../utils/FaucetDripButton';
 import axios from "axios";
 
@@ -16,9 +16,18 @@ const Dashboard = ({ privateKey, walletInfo: initialWalletInfo }) => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const beanImage = IS_GHOSTNET ? "/GhostBean.png" : "/WalletBean.png";
+  const [showTokens, setShowTokens] = useState(false);
 
   const [walletInfo, setWalletInfo] = useState(initialWalletInfo);
 
+
+  const [tokenBalances, setTokenBalances] = useState([]);
+
+  useEffect(() => {
+    if (walletInfo?.address) {
+      fetchMyTokens(walletInfo.address).then(setTokenBalances).catch(console.error);
+    }
+  }, [walletInfo?.address]);
   
   useEffect(() => {
     const refreshBalance = async () => {
@@ -96,7 +105,35 @@ const Dashboard = ({ privateKey, walletInfo: initialWalletInfo }) => {
         <div className="dashboard-section send-action">
           <button onClick={() => navigate('/dashboard/send')}>SEND BEAN</button>
         </div>
+        <div className="dashboard-section">
+          <div
+            className="token-section-header"
+            onClick={() => setShowTokens(!showTokens)}
+          >
+            <label>Token Balances</label>
+            <span className="collapse-toggle">{showTokens ? '▲' : '▼'}</span>
+          </div>
 
+          {showTokens && (
+            tokenBalances.length === 0 ? (
+              <div className="balance-number" style={{ fontSize: '0.95rem' }}>
+                No tokens found
+              </div>
+            ) : (
+              <div className="token-balance-list">
+                {tokenBalances.map((token, i) => (
+                  <div
+                    key={i}
+                    className="token-balance-item clickable"
+                    onClick={() => navigate(`/dashboard/token/${token.tokenHash}`)}
+                  >
+                    <strong>{token.symbol}</strong>: {token.balance}
+                  </div>
+                ))}
+              </div>
+            )
+          )}
+        </div>
   
         <div className="dashboard-section">
           <label>Public Key:</label>
@@ -119,7 +156,9 @@ const Dashboard = ({ privateKey, walletInfo: initialWalletInfo }) => {
           {/* <button onClick={() => navigate('/dashboard/beanmojis')}>BEANMOJIS</button>
           <button onClick={() => navigate('/dashboard/myBeans')}>MY BEANMOJIS</button> */}
         </div>
-        <Outlet />
+        <div className='box'>
+          <Outlet />
+        </div>
       </div>
     </motion.div>
   );

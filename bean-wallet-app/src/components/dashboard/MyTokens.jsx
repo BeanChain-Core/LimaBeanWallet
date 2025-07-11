@@ -49,7 +49,7 @@ const MyTokens = ({ walletInfo }) => {
     <div className="token-container">
       <h2>Your Tokens</h2>
 
-      {/* Search Bar */}
+      {/* Search Bar
       <form onSubmit={handleSearch} className="token-search-bar">
         <input
           type="text"
@@ -58,7 +58,7 @@ const MyTokens = ({ walletInfo }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button type="submit">Search</button>
-      </form>
+      </form> */}
 
       {status && <p className={`status-msg ${status.type}`}>{status.message}</p>}
 

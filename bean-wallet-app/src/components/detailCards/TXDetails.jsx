@@ -5,11 +5,15 @@ import { Link } from 'react-router-dom';
 import './TXDetails.css'; 
 import { resolveAlias } from '../../utils/aliases';
 import MetaDisplay from '../utils/MetaDisplay';
+import { useNavigate } from 'react-router-dom';
+
 
 const TXDetails = () => {
   const { txHash } = useParams();
   const [tx, setTx] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  
   
 
 
@@ -19,8 +23,8 @@ const TXDetails = () => {
         const txData = await fetchTxByHash(txHash);
         setTx(txData);
       } catch (err) {
-        console.error('❌ Failed to load TX:', err);
-        setError('Could not load transaction.');
+        console.error('❌ Failed to load TX, redirecting to rejected view...');
+        navigate(`/rejected/${txHash}`);
       }
     };
 
@@ -48,7 +52,7 @@ const TXDetails = () => {
         <Link to={`/wallet/${tx.from}`}><p><strong>From:</strong> <span title={tx.from}>{resolveAlias(tx.from)}</span></p></Link>
         <Link to={`/wallet/${tx.to}`}><p><strong>To:</strong> $<span title={tx.to}>{resolveAlias(tx.to)}</span></p></Link>
         <p><strong>Amount:</strong> {tx.amount}</p>
-        <p><strong>Gas Fee:</strong> {(tx.gasFee / 1e8).toFixed(8)} BEAN</p>
+        <p><strong>Gas Fee:</strong> {(tx.gasFee / 1e6).toFixed(6)} BEAN</p>
         <p><strong>Nonce:</strong> {tx.nonce}</p>
         <p><strong>Timestamp:</strong> {new Date(tx.timeStamp).toLocaleString()}</p>
         {tx.meta && (

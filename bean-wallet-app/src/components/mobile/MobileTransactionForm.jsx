@@ -4,6 +4,7 @@ import { fetchWalletNonce, submitTransaction } from '../../utils/api';
 import SuccessScreen from '../messages/SuccessScreen';
 import { useNavigate } from 'react-router-dom';
 import QRScanner from '../utils/QRScanner';
+import { useSearchParams } from 'react-router-dom';
 import './MobileTransactionForm.css'; 
 
 const MobileTransactionForm = ({ privateKey, walletInfo }) => {
@@ -17,6 +18,8 @@ const MobileTransactionForm = ({ privateKey, walletInfo }) => {
   const [showScanner, setShowScanner] = useState(false);
 
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [isLocked, setIsLocked] = useState(false);
 
   const handleScanned = (scanned) => {
     if (scanned.startsWith("BEANX:") && scanned.length === 48) {
@@ -26,6 +29,13 @@ const MobileTransactionForm = ({ privateKey, walletInfo }) => {
       alert("⚠️ Invalid BEANX address.");
     }
   };
+  useEffect(() => {
+    const param = searchParams.get('address');
+    if (param && param.startsWith('BEANX:0x') && param.length === 48) {
+      setRecipient(param);
+      setIsLocked(true);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (walletInfo?.address) {
@@ -43,7 +53,7 @@ const MobileTransactionForm = ({ privateKey, walletInfo }) => {
     e.preventDefault();
     const trimmedRecipient = recipient.trim();
     const amountNum = Number(amount);
-    const gasFeeNum = Math.round(parseFloat(gasFee) * 1e8);
+    const gasFeeNum = Math.round(parseFloat(gasFee) * 1e6);
     const timeStamp = Date.now();
 
 
@@ -84,7 +94,7 @@ const MobileTransactionForm = ({ privateKey, walletInfo }) => {
       console.log("TX DATA SENDING TO SIGN:", {
         from: walletInfo.address,
         to: trimmedRecipient,
-        amount: parseFloat(amount).toFixed(8),
+        amount: parseFloat(amount).toFixed(6),
         gasFee: gasFeeNum,
         timeStamp
       });
@@ -135,6 +145,7 @@ const MobileTransactionForm = ({ privateKey, walletInfo }) => {
             placeholder="BEANX:0x..."
             style={{ flex: 1, marginRight: '0.5rem' }}
             required
+            disabled={isLocked}
           />
           <button type="button" className="qr-scan-button" onClick={() => setShowScanner(true)}>📷</button>
         </div>

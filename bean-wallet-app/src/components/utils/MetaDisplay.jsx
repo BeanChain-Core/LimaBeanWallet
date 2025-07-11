@@ -7,24 +7,28 @@ export default function MetaDisplay({ meta }) {
     return <pre>{meta || 'No metadata'}</pre>;
   }
 
-  return (
-    <div className="meta-display">
-      {Object.entries(meta).map(([key, value]) => (
-        <div key={key} className="meta-line">
-          <span className="meta-label">{formatKey(key)}:</span>
-          <span className="meta-value">
-            {key === 'tokenHash' ? (
-              <Link to={`/token/${value}`} className="token-link">
-                {formatValue(value)}
-              </Link>
-            ) : (
-              formatValue(value)
-            )}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
+ return (
+  <div className="meta-display">
+    {Object.entries(meta).map(([key, value]) => (
+      <div key={key} className="meta-line">
+        <span className="meta-label">{formatKey(key)}:</span>
+        <span className="meta-value">
+          {key === 'tokenHash' ? (
+            <Link to={`/token/${value}`} className="token-link">
+              {formatValue(value)}
+            </Link>
+          ) : key === 'rejectionReason' ? (
+            <span style={{ color: 'red', fontStyle: 'italic' }}>
+              {formatValue(value)}
+            </span>
+          ) : (
+            formatValue(value)
+          )}
+        </span>
+      </div>
+    ))}
+  </div>
+);
 }
 
 function formatKey(key) {

@@ -6,7 +6,7 @@ import * as secp from '@noble/secp256k1';
 console.log('✅ SECP VERSION:', utils.version ?? 'unknown');
 
 function formatAmount(amount) {
-  return Number(amount).toFixed(8);
+  return Number(amount).toFixed(6);
 }
 
 function generateTransactionHash(from, to, amount, timeStamp, nonce, gasFee) {

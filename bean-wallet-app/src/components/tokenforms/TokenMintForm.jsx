@@ -81,7 +81,7 @@ const TokenMintForm = ({ privateKey, walletInfo }) => {
         from,
         to: 'MINTSYS',
         amount,
-        gasFee: Math.round(gasFee),
+        gasFee: Number(Number(gasFee).toFixed(6)),
         publicKeyHex,
         timeStamp: Date.now(),
         type: 'mint',

@@ -25,12 +25,12 @@ const Header = ({
           <DarkModeToggle showGhostToggle={false} />
           {isLoggedIn && (
             <button onClick={onDashboardClick} className="dashboard-button">
-              Dashboard
+              WALLET
             </button>
           )}
           {isLoggedIn && (
             <button onClick={onLogoutClick} className="logout-button">
-              Log Out
+              LOGOUT
             </button>
           )}
         </div>
