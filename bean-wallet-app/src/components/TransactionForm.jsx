@@ -4,6 +4,7 @@ import { signTransaction } from '../utils/signingUtils';
 import { fetchWalletNonce, submitTransaction, fetchPendingTxs } from '../utils/api';
 import SuccessScreen from './messages/SuccessScreen';
 import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const TransactionForm = ({ privateKey, walletInfo }) => {
   const [recipient, setRecipient] = useState('');
@@ -16,6 +17,8 @@ const TransactionForm = ({ privateKey, walletInfo }) => {
   const [recentRecipients, setRecentRecipients] = useState([]);
 
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [isLocked, setIsLocked] = useState(false);
   const RECENTS_KEY = 'recentRecipients';
 
   useEffect(() => {
@@ -24,15 +27,26 @@ const TransactionForm = ({ privateKey, walletInfo }) => {
   }, []);
 
   useEffect(() => {
+    const param = searchParams.get('address');
+    if (param && param.startsWith('BEANX:0x') && param.length === 48) {
+      setRecipient(param);
+      setIsLocked(true);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
     const syncNonce = async () => {
       if (walletInfo?.address) {
         try {
-          const [confirmed, pending] = await Promise.all([
-            fetchWalletNonce(walletInfo.address),
-            fetchPendingTxs(walletInfo.address),
-          ]);
-          const pendingCount = Array.isArray(pending) ? pending.length : 0;
-          setNonce(confirmed + pendingCount);
+          // const [confirmed, pending] = await Promise.all([
+          //   fetchWalletNonce(walletInfo.address),
+          //   fetchPendingTxs(walletInfo.address),
+          // ]);
+          // const pendingCount = Array.isArray(pending) ? pending.length : 0;
+          // setNonce(confirmed + pendingCount);
+
+          const confirmedNonce = await fetchWalletNonce(walletInfo.address);
+          setNonce(confirmedNonce);
         } catch (err) {
           setStatus({ type: 'error', message: '⚠️ Failed to sync nonce.' });
         }
@@ -97,7 +111,7 @@ const TransactionForm = ({ privateKey, walletInfo }) => {
         saveRecipient(trimmed);
         setRecipient('');
         setAmount('');
-        setNonce(nonce + 1);
+        setNonce(nonce);
 
         setTimeout(() => {
           setShowSuccess(false);
@@ -146,6 +160,7 @@ const TransactionForm = ({ privateKey, walletInfo }) => {
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value.replace(/^beanx:/i, "BEANX:"))}
                 required
+                disabled={isLocked}
               />
             </div>
 
