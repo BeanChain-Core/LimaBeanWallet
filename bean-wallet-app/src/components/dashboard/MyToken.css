@@ -1,20 +1,37 @@
 /* MyTokens.css */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}  
+
 .token-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: var(--bean-bg);
-    color: var(--bean-text);
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 40px;
+    border: 5px solid var(--bean-border);
+    border-radius: 25px;
+    /* background: var(--bean-bg); */
+    
   }
-  
   .token-container h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--bean-primary);
-    text-align: center;
-  }
-  
+  font-size: 2rem;
+  margin: 0 auto 1.5rem auto; /* This centers the element horizontally */
+  color: var(--bean-border);
+  text-align: center;
+
+  border-radius: 15px;
+  height: 100px;
+  width: 100%;
+  max-width: 600px;
+
+  /* Flexbox for centering content inside */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
   .status-msg {
     text-align: center;
     margin-bottom: 1rem;
@@ -30,8 +47,13 @@
   
   .token-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 5rem !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 5rem;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* centers it in parent */
+    box-sizing: border-box;
+    width: 100%;
   }
   
   .token-card {
@@ -43,6 +65,7 @@
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     cursor: pointer;
     color: var(--bean-text);
+ 
   }
   
   .token-card:hover {
@@ -121,4 +144,47 @@
   cursor: pointer;
 }
 
-  
+@media (max-width: 768px) {
+  .token-container h2 {
+    font-size: 1.4rem;
+    height: auto;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .token-grid {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+    gap: 2rem !important;
+    padding: 0 1rem;
+  }
+
+  .token-card {
+    padding: 1rem;
+  }
+
+  .token-name {
+    font-size: 1.2rem;
+  }
+
+  .token-balance,
+  .token-hash {
+    font-size: 1rem;
+  }
+
+  .token-search-bar {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .token-search-bar input,
+  .token-search-bar button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .token-search-bar button {
+    margin-top: 0.5rem;
+  }
+}

@@ -93,4 +93,34 @@
   .token-btn {
     max-width: 150px !important;
   }
+
+  .holders-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--bean-card);
+  border-radius: 1rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.holders-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.holders-header,
+.holders-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: monospace;
+  border-bottom: 1px dashed var(--bean-border);
+  padding: 0.25rem 0;
+}
+
+.holder-address {
+  color: var(--bean-accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+
   

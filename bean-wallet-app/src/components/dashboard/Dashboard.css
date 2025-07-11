@@ -7,8 +7,8 @@
 .dashboard-container {
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   height: 100%;
   background: var(--bean-bg);
   box-sizing: border-box;
@@ -59,18 +59,20 @@
 
 .dashboard-content-panel {
   flex: 1;
-  padding: 2rem;
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 80%;
+  height: 100%;
   box-sizing: border-box;
+  overflow-y: auto;
+  margin-right: 200px;
 }
 
 .dashboard-content-panel > * {
-  width: 100%;
-  max-width: 900px;
+  width: 80%;
+  max-width: 80%;
 }
 
 /* -----------------------------------
@@ -212,33 +214,47 @@
 
 .dashboard-top-nav {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 0.8rem;
+  align-items: center;
+  gap: 1.2rem;
   margin-bottom: 2rem;
-  background: var(--bean-card);
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  background: rgba(0, 255, 90, 0.03);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 255, 100, 0.05), 0 0 0 1px var(--bean-border);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  overflow-x: hidden;
+  white-space: nowrap;
+  min-width: 80%;
+  min-height: 20%;
 }
 
 .dashboard-top-nav button {
-  background: none;
+  min-width: 33%;
+  min-height: 100px;
+  background: rgba(255, 255, 255, 0.02);
   color: var(--bean-text);
-  padding: 0.5rem 1rem;
   border: 1px solid var(--bean-border);
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 255, 90, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
 }
 
 .dashboard-top-nav button:hover {
   background: var(--bean-accent2);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,255,100,0.08);
+  box-shadow: 0 4px 14px rgba(0, 255, 90, 0.15);
 }
 
 .send-action button {
@@ -267,10 +283,29 @@
   margin-top: 0.5rem;
 }
 
+.token-balance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
 
+.token-balance-item {
+  font-size: 0.9rem;
+  background: var(--bean-accent2);
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  color: var(--bean-text);
+  font-family: monospace;
+}
   
   
-  
+.box {
+  background-color: var(--bean-accent2);
+  border: 5px solid var(--bean-border) !important;
+  border-radius: 25px;
+  height: auto;
+}
   
   
   

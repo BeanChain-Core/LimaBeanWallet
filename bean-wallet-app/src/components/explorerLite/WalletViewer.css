@@ -14,6 +14,14 @@
   margin-bottom: 2rem;
 }
 
+.wallet-center {
+    text-align: center;
+}
+
+
+
+
+
 .wallet-address {
   word-break: break-all;
   font-family: monospace;
@@ -62,19 +70,22 @@ h3, h2 {
 @media (max-width: 768px) {
   .wallet-viewer {
     min-width: unset;
-    width: 95%;
+    width: 80%;
     padding: 1rem;
     margin: 1rem auto;
+    overflow-x: hidden;
   }
 
   .wallet-address {
     font-size: 0.9rem;
     padding: 0.4rem;
+    overflow-x: hidden;
   }
 
   .tx-list a {
     font-size: 0.85rem;
     padding: 0.4rem 0.5rem;
+    overflow-x: hidden;
   }
 
   .bean {
