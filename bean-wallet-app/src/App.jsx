@@ -107,7 +107,7 @@ function App() {
     </main>
     
     
-    <NavigationControls/>
+    {/* <NavigationControls/> */}
     </div>
   );
 }
